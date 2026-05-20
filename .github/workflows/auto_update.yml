@@ -8,14 +8,16 @@ on:
 jobs:
   update-link:
     runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true # Ép hệ thống chạy Node.js mới nhất chống lỗi
     steps:
     - name: Kiểm tra code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4 # Nâng cấp từ v3 lên v4
 
     - name: Cài đặt Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5 # Nâng cấp từ v4 lên v5
       with:
-        python-version: '3.x'
+        python-version: '3.11'
 
     - name: Cài đặt thư viện cần thiết
       run: pip install requests
