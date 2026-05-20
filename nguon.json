@@ -1,26 +1,16 @@
 {
-  "name": "Nguồn Hội Quán Tự Động",
-  "author": "Auto Bot",
+  "name": "Nguồn Hội Quán Auto 🔥",
+  "author": "Robot Tự Động",
+  "version": "1.0.0",
   "groups": [
     {
-      "group_name": "Trận Đấu Đang Đá 🔥",
+      "group_name": "Trận Đấu Đang Trực Tiếp ⚽",
       "channels": [
         {
-          "name": "📺 Kênh Dự Phòng 1",
+          "name": "⏰ Hiện tại chưa có trận đấu nào phát sóng",
           "url": "https://hqlive.yarncdn.live/live/hqtv_channel_1/playlist.m3u8",
           "headers": {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-            "Referer": "https://sv2.hoiquan4.live/",
-            "Origin": "https://sv2.hoiquan4.live"
-          }
-        },
-        {
-          "name": "📺 Kênh Dự Phòng 2",
-          "url": "https://hqlive.yarncdn.live/live/hqtv_channel_2/playlist.m3u8",
-          "headers": {
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-            "Referer": "https://sv2.hoiquan4.live/",
-            "Origin": "https://sv2.hoiquan4.live"
+            "Referer": "https://sv2.hoiquan4.live/"
           }
         }
       ]
