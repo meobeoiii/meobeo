@@ -1,0 +1,32 @@
+name: Tự Động Cập Nhật Link MonPlayer
+
+on:
+  schedule:
+    - cron: '*/10 * * * *' # Cứ 10 phút chạy 1 lần
+  workflow_dispatch: # Cho phép bấm nút chạy bằng tay
+
+jobs:
+  update-link:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Kiểm tra code
+      uses: actions/checkout@v3
+
+    - name: Cài đặt Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+
+    - name: Cài đặt thư viện cần thiết
+      run: pip install requests
+
+    - name: Chạy script quét link
+      run: python crawl.py
+
+    - name: Đẩy file JSON mới lên GitHub
+      run: |
+        git config --global user.name "MonPlayer Bot"
+        git config --global user.email "bot@monplayer.com"
+        git add nguon.json
+        git commit -m "Bot cập nhật link trận đấu mới" || exit 0
+        git push
