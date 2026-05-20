@@ -35,6 +35,7 @@ def main():
                 
     mon_data = []
     
+    # Ép đúng thứ tự thuộc tính: name -> url -> logo giống hệt file mẫu
     for stream in active_streams:
         name_display = stream.replace("hqtv_blv_", "🎙️ BLV ").replace("hqtv_channel_", "📺 KÊNH ").upper()
         mon_data.append({
@@ -44,17 +45,20 @@ def main():
         })
         
     if not mon_data:
-        # ÉP ĐÚNG TỪNG KÝ TỰ CỦA FILE MẪU KHI KHÔNG CÓ TRẬN
+        # Giữ nguyên cấu trúc mảng sạch viết liền từng dòng
         mon_data = [
           {"name": "Hội Quán TV - Kênh 1", "url": "https://hqlive.yarncdn.live/live/hqtv_channel_1/playlist.m3u8", "logo": "https://pub-26bab83910ab4b5781549d12d2f0ef6f.r2.dev/hq.png"},
           {"name": "Hội Quán TV - Kênh 2", "url": "https://hqlive.yarncdn.live/live/hqtv_channel_2/playlist.m3u8", "logo": "https://pub-26bab83910ab4b5781549d12d2f0ef6f.r2.dev/hq.png"},
           {"name": "Hội Quán TV - Kênh 3", "url": "https://hqlive.yarncdn.live/live/hqtv_channel_3/playlist.m3u8", "logo": "https://pub-26bab83910ab4b5781549d12d2f0ef6f.r2.dev/hq.png"}
         ]
 
-    # 🌟 THAY ĐỔI QUAN TRỌNG: Loại bỏ hoàn toàn `indent=2` để ép JSON về dạng chuỗi thô viết liền, 
-    # không xuống dòng bừa bãi, giúp MonPlayer đọc trơn tru 100%
-    with open("hoiquan.json", "w", encoding="utf-8") as f:
-        json.dump(mon_data, f, ensure_ascii=False, separators=(',', ':'))
+    # Tạo chuỗi JSON viết liền không khoảng trắng thụt lề
+    json_string = json.dumps(mon_data, ensure_ascii=False, separators=(',', ':'))
+
+    # 🌟 GHI FILE THÔ (Dạng nhị phân để bóc sạch sẽ ký tự BOM lỗi ẩn nếu có)
+    # Đồng thời ghi thẳng vào đúng file hoiquan.json như bạn muốn
+    with open("hoiquan.json", "wb") as f:
+        f.write(json_string.encode('utf-8'))
 
 if __name__ == "__main__":
     main()
